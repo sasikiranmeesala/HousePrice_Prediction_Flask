@@ -2,15 +2,15 @@ from flask import Flask,render_template,request
 import pickle
 import numpy as np
 # create an object
-app = Flask(__name__)
+application = Flask(__name__)
 '''
-@app.route('/')
+@application.route('/')
 def hello():
     """test funtion"""
     return "welcome to the Flask"
 
 
-@app.route('/sasi',methods=['GET'])
+@application.route('/sasi',methods=['GET'])
 def check():
     """new function"""
     return "Hello, There"
@@ -19,11 +19,11 @@ def check():
 with open('House_price.pkl','rb') as f:
     model = pickle.load(f)
 
-@app.route('/',methods=['GET'])
+@application.route('/',methods=['GET'])
 def home():
     return render_template('index.html') # it is available from jinga template
 
-@app.route('/predict',methods=['POST'])
+@application.route('/predict',methods=['POST'])
 def predict():
     Rooms = int(request.form['bedrooms'])
     Bathrooms  = int(request.form['bathrooms'])
@@ -39,4 +39,4 @@ def predict():
     #now we will pass the above predicted to template
     return render_template('index.html',prediction = prediction)
             
-app.run()
+application.run()
