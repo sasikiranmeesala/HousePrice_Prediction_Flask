@@ -38,5 +38,6 @@ def predict():
     prediction = model.predict(input_data)[0]
     #now we will pass the above predicted to template
     return render_template('index.html',prediction = prediction)
-            
-application.run()
+
+if __name__ == "__main__":
+    application.run()
